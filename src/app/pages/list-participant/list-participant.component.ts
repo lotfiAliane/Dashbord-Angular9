@@ -13,6 +13,9 @@ export class ListParticipantComponent implements OnInit {
   atelier:Atelier;
   id:number;
   participants:Participant[];
+  term:string="";
+  p:any;
+
 
   constructor(private atelierService: AteliersService,private router:Router,private route: ActivatedRoute) { }
 

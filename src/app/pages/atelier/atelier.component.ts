@@ -17,6 +17,9 @@ export class AtelierComponent implements OnInit {
   ately: Atelier;
   selectedDate: Date;
   hour: Date;
+  term:string="";
+  p:any;
+  picker:any="";
 
 
 

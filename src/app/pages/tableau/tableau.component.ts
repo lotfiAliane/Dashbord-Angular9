@@ -13,6 +13,9 @@ export class TableauComponent implements OnInit {
   listAteliers: Atelier[] = [];
   participant: Participant;
   m:number=5;
+  term:string="";
+  p:any;
+
 
   constructor(private atelierService: AteliersService,private router: Router) { }
 

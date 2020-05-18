@@ -18,6 +18,9 @@ export class ParticipantComponent implements OnInit {
   update: boolean = false;
   participant: Participant;
   isSubmited: boolean = false;
+  term:string="";
+  p:any;
+
 
   constructor(private atelierService: AteliersService,
     private formBuilder: FormBuilder, public matDialog: MatDialog) { }
