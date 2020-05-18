@@ -1,0 +1,30 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class=" card-header">
+                    <p *ngIf="participant != undefined" style="color: azure;">{{participant.lastName}}</p>
+                    <input type="text" id='nomParticipant' class="form-control" (keydown)="keyUpFunction($event)" placeholder="Search here" style="width:100%;float:left;">
+
+
+                </div>
+                <div class=" card-body all-icons">
+                    <div class=" row">
+                        <div *ngFor="let atelier of ateliers " (click)='inscriptionAtelier(atelier)' class=" font-icon-list col-lg-4 col-md-4 col-sm-4 col-xs-6 col-xs-6 ">
+                            <div class=" font-icon-detail " id='{{atelier.id}}' [ngStyle]="{'background-color': atelier.reserve == 0 ? 'red' : atelier.places == 0 ? 'orange' : ''}">
+
+                                <h1>{{atelier.name}}</h1>
+                                <h2>{{atelier.horaire}}</h2>
+                                <h2>Place: {{atelier.places}}</h2>
+                                <h2>Reserve: {{atelier.reserve}}</h2>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <button (click)='validation()'>valider</button>
+            </div>
+        </div>
+    </div>
+</div>

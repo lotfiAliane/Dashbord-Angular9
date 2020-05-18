@@ -1,0 +1,120 @@
+<div class=" content">
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class=" card">
+                <div class=" card-header">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <h4 class=" card-title">Participants</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <button (click)='show()' class=" btn btn-fill btn-danger pull-right" type="submit">ajouter</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class=" card-body">
+                    <div class=" table">
+                        <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search here" style="width:40%;margin:30px 40px;float:right;">
+
+                        <table class=" table tablesorter" id="">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th>firstname</th>
+                                    <th>lastName</th>
+                                    <th>email</th>
+                                    <th>phone</th>
+                                    <th>profession</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let participant of participants.participants |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+
+                                <tr>
+
+                                    <td>{{participant.firstname}}</td>
+                                    <td>{{participant.lastName}}</td>
+                                    <td>{{participant.email}}</td>
+                                    <td>{{participant.phone}}</td>
+                                    <td>{{participant.profession}}</td>
+                                    <td><button class="btn btn-fill btn-warning" (click)='edit(participant)' type="submit">Modifier</button></td>
+
+                                    <td><button (click)='openModal(participant)' class="btn btn-fill btn-danger" type="submit">Supprimer</button></td>
+
+                                </tr>
+                            </tbody>
+                            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class=" row">
+        <div class=" col-md-12" id="add">
+            <div class=" card" [style.visibility]="(numberOfUnreadAlerts == 0) ? 'hidden' : 'visible' ">
+                <div class=" card-header">
+                    <h5 class=" title">{{operation}}</h5>
+                </div>
+                <div class=" card-body">
+                    <form [formGroup]="participantForm" (ngSubmit)="ajoutParticipant()">
+                        <div class=" row">
+                            <div class=" col-md-5 pr-md-1">
+                                <div class=" form-group">
+                                    <label> Prenom </label>
+                                    <input class=" form-control" placeholder="prenom" type="text" formControlName="firstname" />
+                                </div>
+                            </div>
+                            <div class=" col-md-3 px-md-1">
+                                <div class=" form-group">
+                                    <label> Nom de famille </label>
+                                    <input class=" form-control" placeholder="Nom de famille" type="text" formControlName="lastName" />
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1"> Email  </label>
+                                    <input class=" form-control" placeholder="mike@email.com" type="email" formControlName='email' />
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <label> Profession </label>
+                                    <input class=" form-control" placeholder="Profession" type="text" formControlName="profession" />
+                                </div>
+                            </div>
+                            <div class=" col-md-6 pl-md-1">
+                                <div class=" form-group">
+                                    <label> phone </label>
+                                    <input class=" form-control" placeholder="Last Name" type="text" formControlName='phone' />
+                                </div>
+                                <div *ngIf="isSubmited && formControls.phone.errors">
+                                    <p *ngIf="formControls.phone.errors.required">phone is required</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" row">
+                            <div class=" col-md-12 pr-md-1">
+                                <div class=" form-group">
+                                    <label> City </label>
+                                    <input class=" form-control" placeholder="City" type="text" value="Mike" formControlName='city' />
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class=" card-footer">
+                            <button class=" btn btn-fill btn-danger" [disabled]="participantForm.invalid" type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,59 @@
+<div class=" content">
+    <div class=" row">
+
+        <div class=" col-md-12">
+            <div class=" card">
+
+                <div class=" card-header">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <h4 class=" card-title" *ngIf="atelier">Ateliers {{atelier.name}}</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <button (click)='hide()' class=" btn btn-fill btn-danger pull-right" type="submit">ajouter</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+
+                        <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search here" style="width:40%;margin:30px 40px;float:right;">
+
+                        <table class=" table tablesorter" id="">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Profession</th>
+                                    <th>Statut</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let participant of participants |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+
+                                <tr>
+
+                                    <td>{{participant.firstname}}</td>
+                                    <td>{{participant.lastName}}</td>
+                                    <td>{{participant.profession}}</td>
+                                    <td>{{participant.pivot.type}}</td>
+                                </tr>
+                            </tbody>
+                            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</div>

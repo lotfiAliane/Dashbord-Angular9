@@ -1,0 +1,159 @@
+<div class=" content">
+    <div class=" row">
+
+        <div class=" col-md-12">
+            <div class=" card">
+
+                <div class=" card-header">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <h4 class=" card-title">Ateliers</h4>
+                        </div>
+                        <div class="col-md-6">
+                            <button (click)='hide()' class=" btn btn-fill btn-danger pull-right" type="submit">ajouter</button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class=" card-body">
+                    <div class=" table-responsive">
+
+                        <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search here" style="width:40%;margin:30px 40px;float:right;">
+
+                        <table class=" table tablesorter" id="">
+                            <thead class=" text-primary">
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Laboratoire</th>
+                                    <th>Intervenant</th>
+                                    <th>place</th>
+                                    <th>reserve</th>
+                                    <th>horaire</th>
+                                    <th>Afficher</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let atelier of ateliers.ateliers |filter:term| paginate: { itemsPerPage: 10, currentPage: p }; let i = index">
+
+                                <tr (click)="edit(atelier)">
+
+                                    <td>{{atelier.name}}</td>
+                                    <td>{{atelier.laboratory}}</td>
+                                    <td>{{atelier.animator}}</td>
+                                    <td>{{atelier.places}}</td>
+                                    <td>{{atelier.reserve}}</td>
+                                    <td>{{atelier.horaire}}</td>
+                                    <td><button (click)='afficher(atelier.id)' class=" btn btn-fill btn-success">Afficher</button></td>
+                                    <td> <button (click)="openModal(atelier)" class=" btn btn-fill btn-danger" type="submit">Supprimer</button></td>
+                                </tr>
+                            </tbody>
+                            <pagination-controls (pageChange)="p = $event" previousLabel="" nextLabel=""></pagination-controls>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="  col-md-12" [style.visibility]="(numberOfUnreadAlerts == 0) ? 'hidden' : 'visible' ">
+            <div class=" card">
+                <div class=" card-header">
+                    <h5 class=" title">{{operation}}</h5>
+                </div>
+                <div class=" card-body">
+                    <form [formGroup]="atelierForm" (ngSubmit)="ajoutAtelier()">
+                        <div class=" row">
+                            <div class=" col-md-5 pr-md-1">
+                                <div class=" form-group">
+                                    <label>Intitule  </label>
+                                    <input class=" form-control" formControlName="id" type="text" hidden />
+                                    <input class=" form-control" formControlName="name" type="text" (ngModelChange)=null />
+                                    <div *ngIf="isSubmitted && formControls.name.errors" class="help-block">
+                                        <div *ngIf="formControls.name.errors && formControls.name.errors?.required">Intitule is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-3 px-md-1">
+                                <div class=" form-group">
+                                    <label> laboratoire </label>
+                                    <input formControlName="laboratory" class=" form-control" type="text" />
+                                    <div *ngIf="isSubmitted && formControls.laboratory.errors" class="help-block">
+                                        <div *ngIf="formControls.laboratory.errors.required">laboratoire is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-4 pl-md-1">
+                                <div class=" form-group">
+                                    <label for="exampleInputEmail1">animateur </label>
+                                    <input class=" form-control" type="text" formControlName='animator' />
+                                    <div *ngIf="isSubmitted && formControls.animator.errors" class="help-block">
+                                        <div *ngIf="formControls.animator.errors.required">animator is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-6 pr-md-1">
+                                <div class=" form-group">
+                                    <label> places </label>
+                                    <input class=" form-control" placeholder="Place" type="number" formControlName="places" />
+                                    <div *ngIf="isSubmitted && formControls.places.errors" class="help-block">
+                                        <div *ngIf="formControls.places.errors.required">places is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" col-md-6 pl-md-1">
+                                <div class=" form-group">
+                                    <label> reserve:  </label>
+                                    <input class=" form-control" placeholder="reserve" type="number" formControlName="reserve" />
+                                    <div *ngIf="isSubmitted && formControls.reserve.errors" class="help-block">
+                                        <div *ngIf="formControls.reserve.errors.required">reserve is required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" row">
+                            <div class=" col-md-6">
+                                <div class=" form-group">
+                                    <label> Date </label>
+
+                                    <mat-form-field>
+                                        <input class=" form-control" formControlName="date" [for]="picker" matInput [matDatepicker]="picker">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                    <div *ngIf="isSubmitted && formControls.horaire.errors" class="help-block">
+                                        <div *ngIf="formControls.horaire.errors.required">horaire is required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class=" col-md-6">
+                                <div class=" form-group">
+                                    <label> horaire  </label>
+
+                                    <input class=" form-control" formControlName="horaire" placeholder="" aria-label="12hr format" [ngxTimepicker]="default" readonly>
+                                    <ngx-material-timepicker #default></ngx-material-timepicker>
+
+                                    <div *ngIf="isSubmitted && formControls.horaire.errors" class="help-block">
+                                        <div *ngIf="formControls.horaire.errors.required">horaire is required</div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class=" btn btn-fill btn-danger" [disabled]="atelierForm.invalid">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
