@@ -28,6 +28,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ListParticipantComponent } from '../../pages/list-participant/list-participant.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
@@ -49,6 +50,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     NgxMaterialTimepickerModule,
     //BrowserAnimationsModule,
     BsDatepickerModule,
+    MatInputModule,
     DlDateTimeDateModule,  // <--- Determines the data type of the model
     DlDateTimePickerModule,
     NgbModule,
