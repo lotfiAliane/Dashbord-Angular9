@@ -4,8 +4,6 @@
 
 
 
-![Product Gif](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/black-dashboard-angular/bd_angular.gif)
-
 
 Dashbord With angular 9 consuming Web API provided by Laravel 6, secured by Json Web Token (JWT).  - Lazy Loading  -HTTPCLIENT -Reactive Form -Template Driven Forms -Two way Data-Binding -HTTP Interceptor  -Reactive Programation RXJS -Observer Pattern
 
@@ -23,9 +21,6 @@ Dashbord With angular 9 consuming Web API provided by Laravel 6, secured by Json
 
 
 
-| HTML | Angular | React | Vue |
-| --- | --- | --- | --- |
-| [![Black Dashboard HTML](https://s3.amazonaws.com/creativetim_bucket/products/93/thumb/opt_bd_thumbnail.jpg)](https://www.creative-tim.com/product/black-dashboard?ref=bda-readme) | [![Black Dashboard Angular](https://s3.amazonaws.com/creativetim_bucket/products/169/thumb/opt_bd_angular_thumbnail.jpg)](https://www.creative-tim.com/product/black-dashboard-angular?ref=bda-readme) | [![Black Dashboard React](https://s3.amazonaws.com/creativetim_bucket/products/136/thumb/opt_bd_react.jpg)](https://www.creative-tim.com/product/black-dashboard-react?ref=bda-readme) | [![Vue Black Dashboard](https://s3.amazonaws.com/creativetim_bucket/products/99/thumb/opt_bd_vue_thumbnail.jpg)](https://www.creative-tim.com/product/vue-black-dashboard?ref=bda-readme) |
 
 
 
